@@ -1,3 +1,3 @@
 export default function Home() {
-  return <main>초기화</main>;
+  return <main>AR테스트</main>;
 }
