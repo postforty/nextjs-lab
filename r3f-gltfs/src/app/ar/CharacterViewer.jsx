@@ -1,21 +1,40 @@
+"use client";
 import React, { Suspense } from "react";
-import { Canvas, useLoader, useFrame } from "@react-three/fiber";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Clone, OrbitControls, useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 
-const Character = ({ scene }) => {
-  return <primitive object={scene} />;
+const Character = ({ characterPath, scale }) => {
+  const { scene, animations } = useGLTF(characterPath);
+
+  let mixer = null;
+
+  // 애니메이션 재생
+  if (animations.length !== 0) {
+    mixer = new THREE.AnimationMixer(scene);
+    void mixer.clipAction(animations[0]).play();
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useFrame((state, delta) => {
+      mixer.update(delta);
+    });
+  }
+
+  return (
+    <Clone object={scene} scale={scale} /> // 애니메이션 재생 안됨
+    // <primitive object={scene} scale={scale} /> // 애니메이션 재생됨
+  );
 };
 
 const CharacterViewer = ({ characterPath }) => {
-  const { scene } = useLoader(GLTFLoader, characterPath);
-
   return (
     <div>
-      <Canvas camera={{ position: [20, 5, -8] }}>
+      <Canvas key={characterPath} camera={{ position: [20, 0, -8] }}>
+        <OrbitControls />
         <ambientLight intensity={2} />
         <pointLight position={[10, 10, 10]} />
-        <group rotation-y={Math.PI / 2}>
-          <Character scene={scene} />
+        <group {...characterPath} dispose={null} rotation-y={Math.PI / 2}>
+          <Character scale={[15, 15, 15]} characterPath={characterPath} />
         </group>
         <Suspense fallback={null}></Suspense>
       </Canvas>

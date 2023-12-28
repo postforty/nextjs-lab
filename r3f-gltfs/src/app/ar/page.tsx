@@ -1,30 +1,17 @@
 "use client";
-import { ChangeEvent, useEffect, useState } from "react";
+import React from "react";
 import CharacterViewer from "./CharacterViewer";
 
-export default function page() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  // const [info, setInfo] = useState({
-  //   position: [0, 4, 0],
-  //   scale: [2, 2, 2],
-  // });
+export default function Page() {
+  const characterPath = "red_01.glb";
 
-  // const { position, scale } = info;
-  // const characterPath = "/characters/ex/charo_01.glb";
-  const characterPath = "/charo_01.glb";
   return (
     <>
       <div>
-        <CharacterViewer
-          characterPath={characterPath}
-          // scale={scale}
-          // position={position}
-        />
-        <CharacterViewer
-          characterPath={characterPath}
-          // scale={scale}
-          // position={position}
-        />
+        <CharacterViewer characterPath={characterPath} />
+      </div>
+      <div>
+        <CharacterViewer characterPath={characterPath} />
       </div>
     </>
   );

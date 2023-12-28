@@ -1,14 +1,21 @@
+"use client";
 import React, { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 
 type Props = {
   children: ReactNode;
-  modal: ReactNode;
+  model: ReactNode;
 };
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, model }: Props) {
+  const pathname = usePathname();
+
   return (
-    <main>
-      <div>{children}</div>
-    </main>
+    <>
+      <main>
+        {children}
+        {model}
+      </main>
+    </>
   );
 }
