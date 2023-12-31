@@ -8,7 +8,4 @@
 ## react-hook-form
 
 - 의존성
-  - npm i react-hook-form
-  - npm i @hookform/resolvers yup
-  - npm i antd
-  - npm i styled-components
+  - npm i react-hook-form yup @hookform/resolvers
