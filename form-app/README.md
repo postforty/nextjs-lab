@@ -4,4 +4,4 @@
 
 ## 의존성
 
-- npm install react-hook-form yup @hookform/resolvers
+- npm i react-hook-form yup @hookform/resolvers
