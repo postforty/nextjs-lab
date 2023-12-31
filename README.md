@@ -6,3 +6,9 @@
 - 이슈: 한 화면에 하나의 GLTF를 여러번 렌더링하고자 함
 
 ## react-hook-form
+
+- 의존성
+  - npm i react-hook-form
+  - npm i @hookform/resolvers yup
+  - npm i antd
+  - npm i styled-components
